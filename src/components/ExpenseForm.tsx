@@ -80,7 +80,7 @@ function ExpenseForm({ onSubmit }: FormProps) {
         )}
       </div>
 
-      <div>
+      <div className="mb-3">
         <button
           className="btn btn-primary"
           type="submit"
