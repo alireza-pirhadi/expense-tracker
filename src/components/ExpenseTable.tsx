@@ -1,22 +1,17 @@
+import { useState } from "react";
 import { ExpenseData } from "./ExpenseForm";
 
 interface TableProps {
   items: ExpenseData[];
   deleteItem: (item: ExpenseData) => void;
-  selectedCategory: string;
-  changeCategory: (category: string) => void;
 }
 
-function ExpenseTable({
-  items,
-  deleteItem,
-  selectedCategory,
-  changeCategory,
-}: TableProps) {
+function ExpenseTable({ items, deleteItem }: TableProps) {
+  const [selectedCategory, setCategory] = useState<string>("All Categories");
   return (
     <div style={{ margin: "20px 0" }}>
       <select
-        onChange={(event) => changeCategory(event.target.value)}
+        onChange={(event) => setCategory(event.target.value)}
         className="form-select"
         aria-label="Default select example"
       >
