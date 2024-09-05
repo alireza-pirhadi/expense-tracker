@@ -1,14 +1,17 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { categories } from "./ExpenseTracker";
+import categories from "../categories";
+import errorMap from "zod/lib/locales/en";
 
 const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Description should be at least 3 characters." }),
   amount: z.number({ invalid_type_error: "Amount is required." }),
-  category: z.enum(["Groceries", "Utilities", "Entertainment"]),
+  category: z.enum(categories, {
+    errorMap: () => ({ message: "Category is required." }),
+  }),
 });
 
 type ExpenseData = z.infer<typeof schema>;
@@ -79,7 +82,7 @@ function ExpenseForm({ onSubmit }: FormProps) {
           ))}
         </select>
         {errors.category && (
-          <p className="text-danger">Category is required.</p>
+          <p className="text-danger">{errors.category.message}</p>
         )}
       </div>
 
