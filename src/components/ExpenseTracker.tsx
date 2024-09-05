@@ -4,9 +4,11 @@ import ExpenseTable from "./ExpenseTable";
 import { ExpenseData } from "./ExpenseForm";
 import ExpenseFilter from "./ExpenseFilter";
 
+export const categories = ["Groceries", "Utilities", "Entertainment"];
+
 function ExpenseTracker() {
   const [items, setItems] = useState<ExpenseData[]>([]);
-  const [selectedCategory, setCategory] = useState<string>("All Categories");
+  const [selectedCategory, setCategory] = useState<string>("");
 
   const onSubmit = (data: ExpenseData) => {
     setItems([...items, data]);

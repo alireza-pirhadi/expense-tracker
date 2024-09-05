@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { categories } from "./ExpenseTracker";
 
 const schema = z.object({
   description: z
@@ -71,9 +72,11 @@ function ExpenseForm({ onSubmit }: FormProps) {
           id="category"
         >
           <option value=""></option>
-          <option value="Groceries">Groceries</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Entertainment">Entertainment</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
         {errors.category && (
           <p className="text-danger">Category is required.</p>

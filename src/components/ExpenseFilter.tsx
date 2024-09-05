@@ -1,6 +1,9 @@
+import { categories } from "./ExpenseTracker";
+
 interface FilterProps {
   onSelectCategory: (category: string) => void;
 }
+
 function ExpenseFilter({ onSelectCategory }: FilterProps) {
   return (
     <select
@@ -9,9 +12,11 @@ function ExpenseFilter({ onSelectCategory }: FilterProps) {
       aria-label="Default select example"
     >
       <option value="">All Categories</option>
-      <option value="Groceries">Groceries</option>
-      <option value="Utilities">Utilities</option>
-      <option value="Entertainment">Entertainment</option>
+      {categories.map((category) => (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      ))}
     </select>
   );
 }
